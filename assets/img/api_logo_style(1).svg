@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="transparent"/>
+  <!-- API chip -->
+  <g fill="none" stroke="#1260F4" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="145" y="108" width="222" height="222" rx="28"/>
+    <path d="M185 108V78 M225 108V78 M265 108V78 M305 108V78"/>
+    <path d="M185 330V360 M225 330V360 M265 330V360 M305 330V360"/>
+    <path d="M145 150H112 M145 190H112 M145 230H112 M145 270H112"/>
+    <path d="M367 150H400 M367 190H400 M367 230H400 M367 270H400"/>
+  </g>
+  <path d="M168 156V264Q168 274 178 274H325"
+        fill="none" stroke="#18DCEB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="268" y="226" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="64" font-weight="500" fill="#1260F4">API</text>
+</svg>

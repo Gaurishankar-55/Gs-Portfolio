@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<circle cx="256" cy="256" r="245" fill="#68A063"/>
+<path fill="#fff" d="M256 106.5 382.8 179.7v146.6L256 399.5l-126.8-73.2V179.7L256 106.5Zm0 27.7-102.8 59.4v118.8L256 371.8l102.8-59.4V193.6L256 134.2Z"/>
+<text x="256" y="285" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#fff">NODE.JS</text>
+</svg>

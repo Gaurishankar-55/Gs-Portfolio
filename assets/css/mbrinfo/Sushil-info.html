@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Rahul Kashyap – Profile</title>
+    <style>
+      :root {
+        --hue: 110;
+        --green: hsl(var(--hue), 75%, 60%);
+        --gradient-color: linear-gradient(
+          90deg,
+          hsl(var(--hue), 75%, 60%) 0%,
+          hsl(var(--hue), 100%, 85%) 40%,
+          hsl(var(--hue), 100%, 85%) 60%,
+          hsl(var(--hue), 75%, 60%) 100%
+        );
+        --text: hsl(var(--hue), 24%, 98%);
+        --muted: hsl(var(--hue), 4%, 70%);
+        --bg: hsl(var(--hue), 12%, 4%);
+        --card: hsl(var(--hue) 8% 10% / 0.88);
+        --line: hsl(var(--hue), 8%, 20%);
+        --body-font: "Poppins", sans-serif;
+        --second-font: "Syne", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background:
+          radial-gradient(
+            circle 170px at 0% 0%,
+            hsla(110, 60%, 36%, 0.9),
+            transparent
+          ),
+          radial-gradient(
+            circle 340px at 50% 26%,
+            hsla(110, 58%, 28%, 0.85),
+            transparent
+          ),
+          radial-gradient(
+            circle 180px at 100% 62%,
+            hsla(110, 60%, 36%, 0.9),
+            transparent
+          ),
+          var(--bg);
+        background-attachment: fixed;
+        color: var(--text);
+        font:
+          400 0.938rem/1.7 var(--body-font),
+          "Segoe UI",
+          system-ui,
+          sans-serif;
+        min-height: 100vh;
+        padding: 24px 16px 56px;
+      }
+      .back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1px solid var(--line);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .back:hover,
+      .back:focus-visible {
+        border-color: var(--green);
+        outline: none;
+      }
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px;
+        margin-bottom: 18px;
+      }
+      .head {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, hsl(110, 40%, 18%), var(--green));
+        display: grid;
+        place-items: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: hsl(110, 12%, 8%);
+        flex: none;
+        overflow: hidden;
+        border: 2px solid var(--green);
+        position: relative;
+      }
+      .avatar img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      h1,
+      h2,
+      .name {
+        font-family: var(--second-font), var(--body-font), sans-serif;
+      }
+      h1 {
+        font-size: 1.9rem;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+      .role {
+        color: var(--green);
+        font-weight: 600;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+        color: var(--green);
+      }
+      p {
+        color: var(--muted);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 14px;
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+      .scroll {
+        overflow-x: auto;
+      }
+      .info td:first-child {
+        color: var(--muted);
+        width: 34%;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skills li {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-size: 14px;
+        background: hsl(110, 12%, 7%);
+      }
+      .plain {
+        display: block;
+      }
+      .plain li {
+        padding: 8px 0 8px 18px;
+        position: relative;
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+      }
+      .plain li:last-child {
+        border-bottom: 0;
+      }
+      .plain li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 17px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+      .plain b {
+        color: var(--text);
+        font-weight: 600;
+      }
+      @media (max-width: 520px) {
+        .card {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 23px;
+        }
+      }
+
+      /* ---------- motion layer ---------- */
+      .wrap {
+        position: relative;
+        z-index: 1;
+      }
+      .orb {
+        position: fixed;
+        width: 460px;
+        height: 460px;
+        left: 12%;
+        top: 38%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(102, 230, 77, 0.22),
+          transparent 65%
+        );
+        filter: blur(30px);
+        pointer-events: none;
+        z-index: 0;
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        to {
+          transform: translate(55vw, -18vh) scale(1.25);
+        }
+      }
+
+      .back {
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s,
+          background 0.3s;
+      }
+      .back:hover {
+        transform: translateX(-4px);
+        border-color: var(--green);
+        box-shadow:
+          0 0 0 6px rgba(102, 230, 77, 0.12),
+          0 0 24px rgba(102, 230, 77, 0.4);
+        background: hsl(110, 30%, 14%);
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+          border-color 0.35s,
+          box-shadow 0.35s;
+        backdrop-filter: blur(6px);
+      }
+      .card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.35s;
+        background: radial-gradient(
+          420px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(102, 230, 77, 0.16),
+          transparent 45%
+        );
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 2px;
+        width: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--green),
+          transparent
+        );
+        transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(102, 230, 77, 0.55);
+        box-shadow: 0 22px 50px -20px rgba(102, 230, 77, 0.4);
+      }
+      .card:hover::before {
+        opacity: 1;
+      }
+      .card:hover::after {
+        width: 100%;
+      }
+
+      .rv {
+        opacity: 0;
+      }
+      .rv.in {
+        opacity: 1;
+        animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+        animation-delay: var(--d, 0s);
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(36px) scale(0.97);
+          filter: blur(6px);
+        }
+      }
+
+      .ring {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        flex: none;
+        display: grid;
+        place-items: center;
+      }
+      .ring::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0 55%,
+          var(--green) 100%
+        );
+        animation: spin 2.6s linear infinite;
+      }
+      .ring::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        box-shadow: 0 0 34px rgba(102, 230, 77, 0.45);
+        animation: pulse 2.6s ease-in-out infinite;
+      }
+      .ring .avatar {
+        width: 100px;
+        height: 100px;
+        border: 4px solid var(--card);
+        background-color: hsl(110, 12%, 6%);
+        z-index: 1;
+        transition: transform 0.4s;
+      }
+      .ring:hover .avatar {
+        transform: scale(1.07) rotate(-3deg);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      .name {
+        background: linear-gradient(
+          100deg,
+          var(--text) 0 40%,
+          hsl(110, 100%, 85%) 46%,
+          var(--green) 50%,
+          hsl(110, 100%, 85%) 54%,
+          var(--text) 60% 100%
+        );
+        background-size: 250% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        cursor: default;
+      }
+      .name:hover {
+        animation: shine 1.1s ease;
+      }
+      @keyframes shine {
+        to {
+          background-position: 0 0;
+        }
+      }
+      .role.typing::after {
+        content: "";
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        margin-left: 3px;
+        background: var(--green);
+        vertical-align: -2px;
+        animation: blink 0.7s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 6px;
+        transition:
+          letter-spacing 0.35s,
+          text-shadow 0.35s;
+      }
+      h2::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 26px;
+        background: var(--green);
+        border-radius: 2px;
+        transition: width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .card:hover h2 {
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 18px rgba(102, 230, 77, 0.55);
+      }
+      .card:hover h2::after {
+        width: 100%;
+      }
+      p {
+        transition: color 0.3s;
+      }
+      .card:hover p {
+        color: hsl(110, 8%, 82%);
+      }
+
+      tbody tr {
+        transition: background 0.25s;
+      }
+      td {
+        transition:
+          padding 0.25s,
+          color 0.25s;
+      }
+      td:first-child {
+        transition:
+          padding 0.25s,
+          color 0.25s,
+          box-shadow 0.25s;
+      }
+      tbody tr:hover {
+        background: rgba(102, 230, 77, 0.08);
+      }
+      tbody tr:hover td:first-child {
+        box-shadow: inset 3px 0 0 var(--green);
+        padding-left: 20px;
+        color: var(--text);
+      }
+      tbody tr:hover td {
+        color: #fff;
+      }
+
+      .skills li {
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+        cursor: default;
+      }
+      .skills li:hover {
+        transform: translateY(-4px) scale(1.06);
+        background: var(--green);
+        color: hsl(110, 12%, 8%);
+        border-color: var(--green);
+        box-shadow: 0 8px 24px -6px rgba(102, 230, 77, 0.7);
+        font-weight: 600;
+      }
+
+      .plain li {
+        transition:
+          padding 0.3s,
+          color 0.3s,
+          background 0.3s;
+      }
+      .plain li::before {
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .plain li:hover {
+        padding-left: 30px;
+        color: var(--text);
+        background: linear-gradient(
+          90deg,
+          rgba(102, 230, 77, 0.1),
+          transparent
+        );
+      }
+      .plain li:hover::before {
+        transform: scale(1.6);
+        box-shadow: 0 0 12px var(--green);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .rv {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="orb" aria-hidden="true"></div>
+    <div class="wrap">
+      <a class="back" href="javascript:history.back()" aria-label="Go back"
+        >&larr;</a
+      >
+
+      <section class="card head">
+        <div class="ring">
+          <div class="avatar">
+            SN<img
+              src="profile.jpg"
+              alt="Rahul Kashyap"
+              onerror="this.remove()"
+            />
+          </div>
+        </div>
+        <div>
+          <h1 class="name">Mr Sushil</h1>
+          <div class="role" id="role">Technology Learner</div>
+          <div class="sub">Uttar Pradesh, India</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>About</h2>
+        <p>
+          A dedicated and motivated learner with a strong interest in
+          technology. Always eager to learn new skills, take on challenges, and
+          improve through every experience.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Personal details</h2>
+        <div class="scroll">
+          <table class="info">
+            <tr>
+              <td>Full name</td>
+              <td>Sushil Nishad</td>
+            </tr>
+            <tr>
+              <td>Date of birth</td>
+              <td>01 Jan 2004</td>
+            </tr>
+            <tr>
+              <td>Location</td>
+              <td>Uttar Pradesh, India</td>
+            </tr>
+            <tr>
+              <td>Languages</td>
+              <td>Hindi, English</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>rahul@example.com</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>+91 90000 00000</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Education</h2>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>College / School</th>
+                <th>Year</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>B.Tech (Computer Science)</td>
+                <td>Your College Name</td>
+                <td>2022 – 2026</td>
+                <td>8.2 CGPA</td>
+              </tr>
+              <tr>
+                <td>Class 12 (Science)</td>
+                <td>Your School Name</td>
+                <td>2022</td>
+                <td>82%</td>
+              </tr>
+              <tr>
+                <td>Class 10</td>
+                <td>Your School Name</td>
+                <td>2020</td>
+                <td>85%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Skills</h2>
+        <ul class="skills">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>Git</li>
+          <li>Problem solving</li>
+          <li>Communication</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Projects</h2>
+        <ul class="plain">
+          <li>
+            <b>Portfolio website</b> – Personal site with testimonials and
+            profile pages.
+          </li>
+          <li><b>To-do app</b> – Task manager built with JavaScript.</li>
+          <li><b>Weather app</b> – Shows live weather for any city.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Achievements and interests</h2>
+        <ul class="plain">
+          <li>Completed online courses in web development.</li>
+          <li>Participated in college coding events.</li>
+          <li>Interests: coding, reading, cricket.</li>
+        </ul>
+      </section>
+    </div>
+    <script>
+      (function () {
+        var cards = [].slice.call(document.querySelectorAll(".card"));
+        cards.forEach(function (c, i) {
+          c.classList.add("rv");
+          c.style.setProperty("--d", i * 0.09 + "s");
+          c.addEventListener("mousemove", function (e) {
+            var r = c.getBoundingClientRect();
+            c.style.setProperty("--mx", e.clientX - r.left + "px");
+            c.style.setProperty("--my", e.clientY - r.top + "px");
+          });
+        });
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (en) {
+              en.forEach(function (x) {
+                if (x.isIntersecting) {
+                  x.target.classList.add("in");
+                  x.target.style.setProperty("--d", "0s");
+                  io.unobserve(x.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          cards.forEach(function (c, i) {
+            if (i < 3) {
+              c.classList.add("in");
+            } else io.observe(c);
+          });
+        } else
+          cards.forEach(function (c) {
+            c.classList.add("in");
+          });
+
+        var role = document.getElementById("role");
+        if (
+          role &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          var t = role.textContent,
+            i = 0;
+          role.textContent = "";
+          role.classList.add("typing");
+          setTimeout(function tick() {
+            role.textContent = t.slice(0, ++i);
+            if (i < t.length) setTimeout(tick, 70);
+            else
+              setTimeout(function () {
+                role.classList.remove("typing");
+              }, 1800);
+          }, 700);
+        }
+      })();
+    </script>
+  </body>
+</html>

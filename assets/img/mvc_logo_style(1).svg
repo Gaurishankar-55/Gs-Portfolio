@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="transparent"/>
+
+  <!-- MVC / Model View Controller style icon -->
+  <g fill="none" stroke="#1260F4" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <!-- top model box -->
+    <rect x="176" y="70" width="160" height="82" rx="18"/>
+    <!-- left view box -->
+    <rect x="70" y="250" width="160" height="82" rx="18"/>
+    <!-- right controller box -->
+    <rect x="282" y="250" width="160" height="82" rx="18"/>
+
+    <!-- connections -->
+    <path d="M256 152V205"/>
+    <path d="M256 205L150 250"/>
+    <path d="M256 205L362 250"/>
+  </g>
+
+  <text x="256" y="125" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="46" font-weight="700" fill="#1260F4">MODEL</text>
+
+  <text x="150" y="305" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="44" font-weight="700" fill="#1260F4">VIEW</text>
+
+  <text x="362" y="305" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="36" font-weight="700" fill="#1260F4">CTRL</text>
+</svg>

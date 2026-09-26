@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="transparent"/>
+  <!-- Node.js-style green hexagon -->
+  <path d="M256 48 L457 164 L457 348 L256 464 L55 348 L55 164 Z"
+        fill="none" stroke="#83CD29" stroke-width="28"
+        stroke-linejoin="round"/>
+  <!-- JS mark -->
+  <path d="M174 174 H202 V321
+           C202 347 191 363 166 363
+           C142 363 128 350 128 326
+           V315 H155 V326
+           C155 335 159 340 167 340
+           C174 340 174 335 174 326 Z"
+        fill="#83CD29"/>
+  <path d="M242 213
+           C242 187 260 174 288 174
+           H342 V201 H289
+           C277 201 269 206 269 215
+           C269 224 275 228 288 231
+           L318 238
+           C345 244 356 258 356 282
+           C356 310 337 327 308 327
+           H251 V300 H308
+           C321 300 329 294 329 283
+           C329 273 323 268 309 265
+           L280 258
+           C254 252 242 238 242 213 Z"
+        fill="#83CD29"/>
+</svg>
