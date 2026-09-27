@@ -778,6 +778,14 @@ margin-left: auto;
   cursor: default;
   transition: filter 0.4s;
 }
+.skills__item a {
+  display: flex;
+  flex-direction: row;      
+  align-items: center;
+  gap: 8px;              
+  text-decoration: none;
+  color: inherit;
+}
 
 .skills__img {
   width: 16px;
