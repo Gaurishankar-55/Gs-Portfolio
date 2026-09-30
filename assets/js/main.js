@@ -105,11 +105,43 @@ tracks.forEach((track) => {
   // Get the child testimonial sliders and create a copy of all cards
   const cards = [...track.children]; // (... spread operato), converts
 
-  // Get all the testimonial sliders
+  //Get all the testimonial sliders
   for (const card of cards) {
     // Duplicate the card and append it at the end
     track.appendChild(card.cloneNode(true));
   }
+});
+
+// =========================
+// MOBILE TOUCH / SWIPE
+// =========================
+
+track.addEventListener(
+  "touchstart",
+  (e) => {
+    isDragging = true;
+
+    startX = e.touches[0].pageX - track.offsetLeft;
+    startScrollLeft = track.scrollLeft;
+  },
+  { passive: true },
+);
+
+track.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!isDragging) return;
+
+    const x = e.touches[0].pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+
+    track.scrollLeft = startScrollLeft - walk;
+  },
+  { passive: true },
+);
+
+track.addEventListener("touchend", () => {
+  isDragging = false;
 });
 
 /*=============== CONTACT EMAIL JS ===============*/
