@@ -887,27 +887,11 @@ margin-left: auto;
   display: flex;
   width: max-content;
    animation: scroll 18s linear infinite;  
-
- display: flex;
-    gap: 0.1rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-    cursor: grab;
-}
-.testimonials__content::-webkit-scrollbar {
-    display: none;
 }
 
-.testimonials__content.dragging {
-    cursor: grabbing;
-    user-select: none;
-}
-
-
-/* .testimonials__content:hover{
+ .testimonials__content:hover{
   animation-play-state: paused;
-} */
-
+} 
 
 /* Infinite scroll animation */
 @keyframes scroll {

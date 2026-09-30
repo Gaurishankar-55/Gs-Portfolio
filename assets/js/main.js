@@ -112,38 +112,6 @@ tracks.forEach((track) => {
   }
 });
 
-// =========================
-// MOBILE TOUCH / SWIPE
-// =========================
-
-track.addEventListener(
-  "touchstart",
-  (e) => {
-    isDragging = true;
-
-    startX = e.touches[0].pageX - track.offsetLeft;
-    startScrollLeft = track.scrollLeft;
-  },
-  { passive: true },
-);
-
-track.addEventListener(
-  "touchmove",
-  (e) => {
-    if (!isDragging) return;
-
-    const x = e.touches[0].pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.5;
-
-    track.scrollLeft = startScrollLeft - walk;
-  },
-  { passive: true },
-);
-
-track.addEventListener("touchend", () => {
-  isDragging = false;
-});
-
 /*=============== CONTACT EMAIL JS ===============*/
 const contactForm = document.getElementById("contact-form"),
   contactMessage = document.getElementById("contact-message");
