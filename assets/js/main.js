@@ -266,3 +266,51 @@ sr.reveal(`.contact__form`);
 sr.reveal(`.contact__link`, { delay: 600, interval: 200 });
 
 sr.reveal(`.footer__container`);
+
+/* floating green bubbles (poore page par) */
+(function () {
+  const cv = document.getElementById("particles");
+  if (!cv) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const ctx = cv.getContext("2d");
+  let W,
+    H,
+    P = [];
+
+  function size() {
+    W = cv.width = innerWidth;
+    H = cv.height = innerHeight;
+  }
+  size();
+  addEventListener("resize", size);
+
+  const count = innerWidth < 600 ? 20 : 45; // phone par kam bubbles
+  for (let i = 0; i < count; i++) {
+    P.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 2 + 0.6, // size
+      v: Math.random() * 0.35 + 0.1, // upar udne ki speed
+      o: Math.random() * 0.5 + 0.15, // transparency
+    });
+  }
+
+  (function draw() {
+    ctx.clearRect(0, 0, W, H);
+    P.forEach((p) => {
+      p.y -= p.v;
+      if (p.y < -5) {
+        p.y = H + 5;
+        p.x = Math.random() * W;
+      }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(140,242,122,${p.o})`;
+      ctx.shadowColor = "#4cd94c";
+      ctx.shadowBlur = 10;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();

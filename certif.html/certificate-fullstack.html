@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Stack Development | Gauri Shankar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Syne:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --g: #4cd94c; /* main green */
+        --g-soft: #8cf27a; /* light green */
+        --g-deep: #1f7a1f; /* deep green */
+        --card: #141714;
+        --bg: #050805;
+        --txt: #e9f2e9;
+        --mut: #9fb09f;
+        --line: rgba(255, 255, 255, 0.08);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--txt);
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Syne", sans-serif;
+      }
+
+      /* ================= BACKGROUND ================= */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.75;
+        will-change: transform;
+      }
+      .b1 {
+        width: 520px;
+        height: 520px;
+        left: -180px;
+        top: -120px;
+        background: radial-gradient(circle, #3fbf3f, transparent 70%);
+        animation: f1 16s ease-in-out infinite alternate;
+      }
+      .b2 {
+        width: 560px;
+        height: 560px;
+        right: -220px;
+        top: 35%;
+        background: radial-gradient(circle, #2f9a2f, transparent 70%);
+        animation: f2 19s ease-in-out infinite alternate;
+      }
+      .b3 {
+        width: 420px;
+        height: 420px;
+        left: 25%;
+        bottom: -200px;
+        background: radial-gradient(circle, #1c6b1c, transparent 70%);
+        animation: f3 22s ease-in-out infinite alternate;
+      }
+      @keyframes f1 {
+        to {
+          transform: translate(160px, 120px) scale(1.2);
+        }
+      }
+      @keyframes f2 {
+        to {
+          transform: translate(-200px, -140px) scale(1.15);
+        }
+      }
+      @keyframes f3 {
+        to {
+          transform: translate(220px, -90px) scale(1.3);
+        }
+      }
+      /* subtle grid that fades out */
+      .grid {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(76, 217, 76, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(76, 217, 76, 0.05) 1px, transparent 1px);
+        background-size: 56px 56px;
+        -webkit-mask-image: radial-gradient(
+          900px circle at 50% 20%,
+          #000,
+          transparent 80%
+        );
+        mask-image: radial-gradient(
+          900px circle at 50% 20%,
+          #000,
+          transparent 80%
+        );
+      }
+      #particles {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* ================= LAYOUT ================= */
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 1.5rem 1.2rem 5rem;
+      }
+
+      /* back button */
+      .back {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: rgba(20, 23, 20, 0.8);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-size: 1.4rem;
+        display: grid;
+        place-items: center;
+        margin-bottom: 1.4rem;
+        text-decoration: none;
+        transition:
+          transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1),
+          background 0.3s,
+          color 0.3s,
+          box-shadow 0.3s;
+      }
+      .back:hover {
+        background: var(--g);
+        color: #000;
+        transform: translateX(-6px) scale(1.08);
+        box-shadow: 0 0 28px rgba(76, 217, 76, 0.6);
+      }
+
+      /* ================= CARDS ================= */
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
+        padding: 2.2rem;
+        margin-bottom: 1.6rem;
+        background: linear-gradient(
+          180deg,
+          rgba(26, 31, 26, 0.92),
+          rgba(14, 17, 14, 0.92)
+        );
+        border: 1px solid var(--line);
+        backdrop-filter: blur(8px);
+        transition:
+          border-color 0.4s,
+          box-shadow 0.4s,
+          transform 0.25s ease-out;
+      }
+      .card:hover {
+        border-color: rgba(76, 217, 76, 0.55);
+        box-shadow:
+          0 0 45px rgba(76, 217, 76, 0.18),
+          0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .title {
+        font-size: 1.5rem;
+        color: var(--g);
+        display: inline-block;
+        position: relative;
+        margin-bottom: 1.4rem;
+      }
+      .title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        height: 3px;
+        width: 34px;
+        border-radius: 3px;
+        background: var(--g);
+        transition: width 0.5s;
+      }
+      .card:hover .title::after {
+        width: 100%;
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+        border-color: rgba(76, 217, 76, 0.4);
+      }
+      .hero::before {
+        /* running line on top */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 40%;
+        background: linear-gradient(90deg, transparent, var(--g), transparent);
+        animation: run 3.2s linear infinite;
+      }
+      @keyframes run {
+        from {
+          left: -40%;
+        }
+        to {
+          left: 100%;
+        }
+      }
+
+      .thumb {
+        flex: 0 0 auto;
+        width: min(360px, 100%);
+        position: relative;
+        cursor: zoom-in;
+      }
+      .ring {
+        /* rotating green frame around the certificate */
+        padding: 7px;
+        border-radius: 1.5rem;
+        background: conic-gradient(
+          from var(--a, 0deg),
+          #4cd94c,
+          #145214,
+          #8cf27a,
+          #145214,
+          #4cd94c
+        );
+        animation: spin 4s linear infinite;
+        box-shadow: 0 0 40px rgba(76, 217, 76, 0.35);
+      }
+      @property --a {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @keyframes spin {
+        to {
+          --a: 360deg;
+        }
+      }
+      .ring img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3/2;
+        object-fit: cover;
+        border-radius: 1.1rem;
+        background: #fff;
+      }
+      .zoom-hint {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        background: var(--g);
+        color: #000;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.3rem 0.8rem;
+        border-radius: 99px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: 0.35s;
+      }
+      .thumb:hover .zoom-hint {
+        opacity: 1;
+        transform: none;
+      }
+
+      .hero__info {
+        min-width: 0;
+      }
+      .hero__info h1 {
+        font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+        line-height: 1.15;
+        margin-bottom: 0.5rem;
+      }
+      .role {
+        color: var(--g);
+        font-weight: 600;
+        font-size: 1.05rem;
+        margin-bottom: 0.15rem;
+      }
+      .sub {
+        color: var(--mut);
+        font-size: 0.95rem;
+      }
+      .tag {
+        display: inline-flex;
+        gap: 0.45rem;
+        align-items: center;
+        margin-top: 1rem;
+        padding: 0.4rem 1rem;
+        border-radius: 99px;
+        border: 1px solid rgba(76, 217, 76, 0.5);
+        background: rgba(76, 217, 76, 0.08);
+        color: var(--g-soft);
+        font-size: 0.82rem;
+        font-weight: 500;
+      }
+      .tag i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--g);
+        animation: pulse 1.6s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(76, 217, 76, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 0 10px rgba(76, 217, 76, 0);
+        }
+      }
+
+      /* ================= CONTENT ================= */
+      .about p {
+        color: #b6c5b6;
+        font-size: 1.05rem;
+        max-width: 78ch;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: minmax(120px, 1fr) 2fr;
+        gap: 1rem;
+        padding: 1rem 0.6rem;
+        border-bottom: 1px solid var(--line);
+        transition:
+          background 0.3s,
+          padding 0.3s;
+      }
+      .row:last-child {
+        border-bottom: 0;
+      }
+      .row:hover {
+        background: rgba(76, 217, 76, 0.06);
+        padding-left: 1.1rem;
+        border-radius: 0.8rem;
+      }
+      .row span {
+        color: var(--mut);
+      }
+      .row b {
+        font-weight: 500;
+        color: #fff;
+        overflow-wrap: anywhere;
+      }
+
+      .learn {
+        list-style: none;
+        display: grid;
+        gap: 0.9rem;
+      }
+      .learn li {
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+        color: #c3d1c3;
+        padding: 0.9rem 1.1rem;
+        border-radius: 1.1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        transition:
+          transform 0.35s cubic-bezier(0.3, 1.4, 0.5, 1),
+          border-color 0.3s;
+      }
+      .learn li:hover {
+        transform: translateX(10px);
+        border-color: rgba(76, 217, 76, 0.6);
+      }
+      .learn li::before {
+        content: "✓";
+        flex: 0 0 auto;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--g);
+        color: #000;
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin-top: 0.1rem;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+      .chip {
+        padding: 0.5rem 1.2rem;
+        border-radius: 99px;
+        border: 1px solid rgba(76, 217, 76, 0.45);
+        color: var(--g-soft);
+        background: rgba(76, 217, 76, 0.07);
+        font-size: 0.9rem;
+        transition: 0.3s;
+      }
+      .chip:hover {
+        background: var(--g);
+        color: #000;
+        transform: translateY(-5px) rotate(-3deg);
+        box-shadow: 0 10px 25px rgba(76, 217, 76, 0.4);
+      }
+
+      .takeaway {
+        font-size: 1.15rem;
+        color: #dfeadf;
+        font-style: italic;
+        border-left: 3px solid var(--g);
+        padding-left: 1.2rem;
+        max-width: 70ch;
+      }
+
+      /* buttons */
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.95rem 1.8rem;
+        border-radius: 99px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        font-family: inherit;
+        text-decoration: none;
+        border: 1px solid var(--g);
+        background: transparent;
+        color: var(--g);
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s ease-out,
+          color 0.35s,
+          box-shadow 0.35s;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--g);
+        transform: translateY(101%);
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        z-index: -1;
+      }
+      .btn:hover {
+        color: #000;
+        box-shadow: 0 0 30px rgba(76, 217, 76, 0.55);
+      }
+      .btn:hover::before {
+        transform: none;
+      }
+      .btn.solid {
+        background: linear-gradient(135deg, var(--g-soft), var(--g));
+        color: #000;
+        border: 0;
+      }
+      .btn.solid:hover {
+        box-shadow: 0 0 38px rgba(76, 217, 76, 0.8);
+      }
+      .btn.off {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+
+      /* ================= ENTRANCE (one orchestrated sequence) ================= */
+      .in {
+        opacity: 0;
+        transform: translateY(50px) scale(0.97);
+        filter: blur(6px);
+      }
+      .go .in {
+        animation: rise 0.9s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+        animation-delay: calc(var(--i) * 0.11s);
+      }
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none;
+          filter: none;
+        }
+      }
+
+      /* ================= LIGHTBOX ================= */
+      .lb {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        display: grid;
+        place-items: center;
+        padding: 1.2rem;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.4s;
+      }
+      .lb.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .lb .ring {
+        width: min(1000px, 100%);
+        transform: scale(0.7) rotate(-4deg);
+        transition: transform 0.6s cubic-bezier(0.2, 1.2, 0.3, 1);
+      }
+      .lb.show .ring {
+        transform: none;
+      }
+      .lb .ring img {
+        aspect-ratio: auto;
+        max-height: 82vh;
+        object-fit: contain;
+      }
+      .lb button {
+        position: absolute;
+        z-index: 10;
+        top: 1.2rem;
+        right: 1.2rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 0;
+        font-size: 1.6rem;
+        background: linear-gradient(135deg, var(--g-soft), var(--g));
+        color: #000;
+        transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
+      }
+      .lb button:hover {
+        transform: rotate(180deg) scale(1.1);
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 820px) {
+        .hero {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .thumb {
+          width: 100%;
+        }
+        .card {
+          padding: 1.5rem;
+          border-radius: 1.6rem;
+        }
+        .row {
+          grid-template-columns: 1fr;
+          gap: 0.1rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .in {
+          opacity: 1;
+          transform: none;
+          filter: none;
+        }
+      }
+      /* ===== EXTRA RESPONSIVE (phone) ===== */
+      .ring img {
+        object-fit: contain;
+      }
+      @media (max-width: 600px) {
+        .wrap {
+          padding: 1rem 0.9rem 3.5rem;
+        }
+        .back {
+          width: 46px;
+          height: 46px;
+          margin-bottom: 1rem;
+        }
+        .card {
+          padding: 1.2rem;
+          border-radius: 1.4rem;
+          margin-bottom: 1.1rem;
+        }
+        .hero {
+          gap: 1.4rem;
+        }
+        .hero__info h1 {
+          font-size: 1.65rem;
+        }
+        .role {
+          font-size: 1rem;
+        }
+        .title {
+          font-size: 1.25rem;
+          margin-bottom: 1.2rem;
+        }
+        .about p {
+          font-size: 0.98rem;
+        }
+        .takeaway {
+          font-size: 1.02rem;
+        }
+        .learn li {
+          padding: 0.8rem 0.9rem;
+          font-size: 0.95rem;
+        }
+        .learn li:hover {
+          transform: none;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .chip {
+          font-size: 0.85rem;
+          padding: 0.45rem 1rem;
+        }
+        .blob {
+          filter: blur(60px);
+        }
+        .b1,
+        .b2,
+        .b3 {
+          width: 300px;
+          height: 300px;
+        }
+        .zoom-hint {
+          opacity: 1;
+          transform: none;
+        }
+        .lb {
+          padding: 0.6rem;
+        }
+        .lb button {
+          top: 0.6rem;
+          right: 0.6rem;
+          width: 42px;
+          height: 42px;
+        }
+        .lb .ring {
+          padding: 5px;
+        }
+      }
+      @media (max-width: 360px) {
+        .hero__info h1 {
+          font-size: 1.45rem;
+        }
+        .tag {
+          font-size: 0.75rem;
+          padding: 0.35rem 0.8rem;
+        }
+      }
+      /* ===== VERIFY POPUP ===== */
+      .vm {
+        position: fixed;
+        inset: 0;
+        z-index: 9500;
+        display: grid;
+        place-items: center;
+        padding: 1.2rem;
+        background: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.35s;
+      }
+      .vm.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .vm__box {
+        position: relative;
+        width: min(440px, 100%);
+        max-height: 92vh;
+        overflow-y: auto;
+        padding: 2.2rem 1.6rem 1.8rem;
+        text-align: center;
+        border-radius: 2rem;
+        background: linear-gradient(180deg, #1f3d1f, #0d150d 60%, #050805);
+        border: 1px solid var(--g);
+        box-shadow: 0 0 70px rgba(76, 217, 76, 0.35);
+        transform: translateY(60px) scale(0.85);
+        transition: transform 0.6s cubic-bezier(0.2, 1.2, 0.3, 1);
+      }
+      .vm.show .vm__box {
+        transform: none;
+      }
+      .vm__close {
+        position: absolute;
+        top: 0.8rem;
+        right: 0.8rem;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 0;
+        font-size: 1.4rem;
+        line-height: 1;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .vm__close:hover {
+        background: var(--g);
+        color: #000;
+        transform: rotate(90deg);
+      }
+      .vm__badge {
+        position: relative;
+        width: 104px;
+        height: 104px;
+        margin: 0 auto 1.1rem;
+      }
+      .vm__spin {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 4px solid rgba(76, 217, 76, 0.18);
+        border-top-color: var(--g);
+        animation: vmspin 0.9s linear infinite;
+        opacity: 0;
+      }
+      .vm.checking .vm__spin {
+        opacity: 1;
+      }
+      @keyframes vmspin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .vm__tick {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: scale(0.6);
+        transition: 0.4s;
+      }
+      .vm.done .vm__tick {
+        opacity: 1;
+        transform: none;
+      }
+      .vm__circ {
+        fill: rgba(76, 217, 76, 0.12);
+        stroke: var(--g);
+        stroke-width: 2.5;
+        stroke-dasharray: 145;
+        stroke-dashoffset: 145;
+      }
+      .vm__path {
+        fill: none;
+        stroke: var(--g-soft);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 40;
+        stroke-dashoffset: 40;
+      }
+      .vm.done .vm__circ {
+        animation: vmdraw 0.7s ease forwards;
+      }
+      .vm.done .vm__path {
+        animation: vmdraw 0.5s 0.5s ease forwards;
+      }
+      @keyframes vmdraw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .vm.done .vm__badge {
+        animation: vmglow 1.6s ease-out 0.3s 1 both;
+      }
+      @keyframes vmglow {
+        0% {
+          filter: drop-shadow(0 0 0 rgba(76, 217, 76, 0));
+        }
+        40% {
+          filter: drop-shadow(0 0 28px rgba(76, 217, 76, 0.9));
+        }
+        100% {
+          filter: drop-shadow(0 0 10px rgba(76, 217, 76, 0.4));
+        }
+      }
+      .vm__status {
+        display: none;
+      }
+      .vm.checking .vm__status--check {
+        display: block;
+        color: var(--mut);
+        font-size: 1rem;
+      }
+      .vm.done .vm__status--done {
+        display: block;
+        font-size: 2.1rem;
+        color: var(--g);
+        animation: vmup 0.5s 0.3s both;
+      }
+      .vm__after {
+        display: none;
+        margin-top: 0.8rem;
+      }
+      .vm.done .vm__after {
+        display: block;
+        animation: vmup 0.6s 0.55s both;
+      }
+      @keyframes vmup {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .vm__title {
+        font-family: "Syne", sans-serif;
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+      .vm__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.65rem 0.2rem;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        font-size: 0.9rem;
+      }
+      .vm__row span {
+        color: var(--mut);
+        flex: 0 0 auto;
+      }
+      .vm__row b {
+        font-weight: 500;
+        color: #fff;
+        text-align: right;
+        overflow-wrap: anywhere;
+      }
+      .vm__note {
+        margin: 0.9rem 0 1rem;
+        font-size: 0.75rem;
+        color: var(--mut);
+      }
+      .vm__link {
+        display: none;
+      }
+      .vm__link.on {
+        display: inline-flex;
+      }
+      :focus-visible {
+        outline: 2px solid var(--g-soft);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+    </div>
+    <div class="grid"></div>
+    <canvas id="particles"></canvas>
+
+    <main class="wrap go">
+      <!-- BACK: seedha home ke certificates section par -->
+      <a
+        class="back in"
+        style="--i: 0"
+        id="back"
+        href="/index.html#work"
+        aria-label="Go back"
+        >&larr;</a
+      >
+
+      <!-- HERO -->
+      <section class="card hero in" style="--i: 1">
+        <div
+          class="thumb"
+          id="thumb"
+          tabindex="0"
+          role="button"
+          aria-label="Zoom certificate"
+        >
+          <div class="ring">
+            <img
+              id="heroImg"
+              src="../assets/img/47a1edcc-2104-4113-8f47-ba8db9e737ba.png"
+              alt="Full Stack Development certificate"
+            />
+          </div>
+          <span class="zoom-hint">Tap to zoom</span>
+        </div>
+        <div class="hero__info">
+          <h1>Full Stack Development</h1>
+          <p class="role">Softpro India</p>
+          <p class="sub">Integral University, Lucknow, Uttar Pradesh, India</p>
+          <span class="tag"><i></i>Certificate of Participation</span>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="card about in" style="--i: 2">
+        <h2 class="title">About</h2>
+        <p>
+          Participated in the workshop "Roadmap to Become a Full Stack
+          Developer", organised by Softpro India at Integral University,
+          Lucknow, for BCA Semester 5. The workshop included hands-on build
+          sessions.
+        </p>
+      </section>
+
+      <!-- DETAILS -->
+      <section class="card in" style="--i: 3">
+        <h2 class="title">Certificate details</h2>
+        <div class="row"><span>Participant</span><b>Gauri Shankar</b></div>
+        <div class="row">
+          <span>Programme</span><b>Roadmap to Become a Full Stack Developer</b>
+        </div>
+        <div class="row"><span>Organised by</span><b>Softpro India</b></div>
+        <div class="row">
+          <span>Course</span><b>BCA, Semester 5, Integral University</b>
+        </div>
+        <div class="row">
+          <span>Venue</span><b>Integral University, Lucknow</b>
+        </div>
+        <div class="row"><span>Issued on</span><b>1 September 2026</b></div>
+        <div class="row"><span>Type</span><b>Workshop</b></div>
+      </section>
+
+      <!-- LEARNED -->
+      <section class="card in" style="--i: 4">
+        <h2 class="title">What I learned</h2>
+        <ul class="learn">
+          <li>Understood the full roadmap of a full stack developer</li>
+          <li>Saw how front end, back end and database connect</li>
+          <li>Followed live hands-on build sessions</li>
+          <li>Learned which skills to practise next</li>
+        </ul>
+      </section>
+
+      <!-- TOOLS -->
+      <section class="card in" style="--i: 5">
+        <h2 class="title">Tools &amp; technologies</h2>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span
+          ><span class="chip">JavaScript</span> <span class="chip">Backend</span
+          ><span class="chip">Database</span>
+        </div>
+      </section>
+
+      <!-- TAKEAWAY -->
+      <section class="card in" style="--i: 6">
+        <h2 class="title">My takeaway</h2>
+        <p class="takeaway">
+          I now have a clear learning path instead of guessing what to study
+          next.
+        </p>
+      </section>
+
+      <!-- ACTIONS -->
+      <section class="card in" style="--i: 7">
+        <h2 class="title">Verify &amp; download</h2>
+        <div class="actions">
+          <!-- verify link mil jaye to # ki jagah daalo -->
+          <button
+            class="btn solid"
+            type="button"
+            id="verifyBtn"
+            data-name="Gauri Shankar"
+            data-title="Roadmap to Become a Full Stack Developer"
+            data-issuer="Softpro India"
+            data-date="1 September 2026"
+            data-id="SP-CERT-2026-00057"
+            data-link=""
+          >
+            Verify certificate
+          </button>
+          <a
+            class="btn"
+            href="../assets/img/47a1edcc-2104-4113-8f47-ba8db9e737ba.png"
+            download
+            >Download</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- verify popup -->
+    <div
+      class="vm"
+      id="vm"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Certificate verification"
+    >
+      <div class="vm__box">
+        <button
+          class="vm__close"
+          type="button"
+          aria-label="Close"
+          onclick="
+            document
+              .getElementById('vm')
+              .classList.remove('show', 'checking', 'done')
+          "
+        >
+          &times;
+        </button>
+        <div class="vm__badge">
+          <span class="vm__spin"></span>
+          <svg class="vm__tick" viewBox="0 0 52 52">
+            <circle class="vm__circ" cx="26" cy="26" r="23" />
+            <path class="vm__path" d="M15 27l8 8 15-17" />
+          </svg>
+        </div>
+        <p class="vm__status vm__status--check">Verifying certificate…</p>
+        <h3 class="vm__status vm__status--done">Verified</h3>
+        <div class="vm__after">
+          <p class="vm__title" id="vmTitle"></p>
+          <div id="vmRows"></div>
+          <p class="vm__note">Details as printed on the certificate.</p>
+          <a class="btn vm__link" id="vmLink" target="_blank" rel="noopener"
+            >Open official verification</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- lightbox -->
+    <div class="lb" id="lb">
+      <button
+        id="lbClose"
+        aria-label="Close"
+        onclick="document.getElementById('lb').classList.remove('show')"
+      >
+        &times;
+      </button>
+      <div class="ring">
+        <img
+          id="lbImg"
+          src=""
+          alt="Full Stack Development certificate full size"
+        />
+      </div>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+
+      /* zoom popup: header wali image hi dikhegi */
+      const lb = $("lb");
+      const openLb = () => {
+        $("lbImg").src = $("heroImg").src;
+        lb.classList.add("show");
+      };
+      const closeLb = () => lb.classList.remove("show");
+      $("thumb").onclick = openLb;
+      $("thumb").onkeydown = (e) => {
+        if (e.key === "Enter") openLb();
+      };
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb || e.target.closest("button")) closeLb();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLb();
+      });
+
+      /* verify popup: tap -> "Verifying..." -> Verified */
+      const vm = $("vm"),
+        vBtn = $("verifyBtn");
+      function openVm() {
+        const d = vBtn.dataset;
+        $("vmTitle").textContent = d.title;
+        const rows = [
+          ["Participant", d.name],
+          ["Issued by", d.issuer],
+          ["Issued on", d.date],
+          ["Certificate ID", d.id],
+        ];
+        $("vmRows").innerHTML = rows
+          .filter((r) => r[1])
+          .map(
+            (r) =>
+              `<div class="vm__row"><span>${r[0]}</span><b>${r[1]}</b></div>`,
+          )
+          .join("");
+        const link = $("vmLink");
+        if (d.link) {
+          link.href = d.link;
+          link.classList.add("on");
+        } else {
+          link.classList.remove("on");
+        }
+        vm.classList.remove("done");
+        vm.classList.add("show", "checking");
+        clearTimeout(vm._t);
+        vm._t = setTimeout(() => {
+          vm.classList.remove("checking");
+          vm.classList.add("done");
+        }, 1600);
+      }
+      function closeVm() {
+        clearTimeout(vm._t);
+        vm.classList.remove("show", "checking", "done");
+      }
+      vBtn?.addEventListener("click", openVm);
+      vm?.addEventListener("click", (e) => {
+        if (e.target === vm) closeVm();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeVm();
+      });
+
+      /* floating green particles */
+      (function () {
+        if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+        const cv = $("particles"),
+          ctx = cv.getContext("2d");
+        let W,
+          H,
+          P = [];
+        function size() {
+          W = cv.width = innerWidth;
+          H = cv.height = innerHeight;
+        }
+        size();
+        addEventListener("resize", size);
+        for (let i = 0; i < 38; i++)
+          P.push({
+            x: Math.random() * innerWidth,
+            y: Math.random() * innerHeight,
+            r: Math.random() * 2 + 0.6,
+            v: Math.random() * 0.35 + 0.1,
+            o: Math.random() * 0.5 + 0.15,
+          });
+        (function draw() {
+          ctx.clearRect(0, 0, W, H);
+          P.forEach((p) => {
+            p.y -= p.v;
+            if (p.y < -5) {
+              p.y = H + 5;
+              p.x = Math.random() * W;
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, 6.283);
+            ctx.fillStyle = `rgba(140,242,122,${p.o})`;
+            ctx.shadowColor = "#4cd94c";
+            ctx.shadowBlur = 10;
+            ctx.fill();
+          });
+          requestAnimationFrame(draw);
+        })();
+      })();
+    </script>
+  </body>
+</html>
